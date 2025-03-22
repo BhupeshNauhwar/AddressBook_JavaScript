@@ -72,7 +72,7 @@ function contactDetails(firstName,lastName,address,state,city,zipCode,email,phon
 }
 
 //UC3 
-contactDetails('Abhishek', 'Sagar', 'Home', 'Uttar Pradesh', 'Mathura', "281001", 'Abhishek@gmail.com', "9876543210");
+contactDetails('Bhupesh', 'kumar', 'Home', 'Uttar Pradesh', 'Mathura', "281001", 'bhupesh@gmail.com', "9876543210");
 console.log(addressBook);
 
 //UC4
@@ -147,23 +147,4 @@ function isDuplicate(firstName) {
     // Reduce to count duplicates
     let duplicateCount = duplicates.reduce((count) => count + 1, 0);
     return duplicateCount > 0;
-}
-
-//UC 8
-
- // method to Search Contact 
- function searchByCity_State(choice , name){
-    if(choice == "city"){
-        person = addressBook.filter(contact => contact.city == name)
-        .map(contact => contact.firstName);
-        console.log("Contact Found Who Is From "+name);
-        console.log(person);
-    }else if(choice == "state"){
-        person = addressBook.filter(contact => contact.state == name)
-        .map(contact => contact.firstName);
-        console.log("Contact Found Who Is From "+name);
-        console.log(person);
-    }else{
-        console.log("Provide Right City or State Name");
-    }
 }
