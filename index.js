@@ -20,8 +20,6 @@ class Contact{
         this.email = email
         this.phoneNumber = phoneNumber
     }
-<<<<<<< HEAD
-=======
 }
 
 //UC2
@@ -53,7 +51,7 @@ function contactDetails(firstName,lastName,address,state,city,zipCode,email,phon
     const zipCodePattern = /^[0-9]{6}/;
     let zipCode_Check = zipCodePattern.test(zipCode) ;
 
-    const emailPattern = /^[A-Za-z0-9]+(.[A-Za-z0-9]+)@[^\\W]+(.[^\\W]+)?(?=(.[^_\\W]{3,}$|.[a-zA-Z]{2}$)).$/;
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     let email_Check = emailPattern.test(email);
 
     const phoneNumberPattern = /^[0-9]{10}/;
@@ -71,5 +69,8 @@ function contactDetails(firstName,lastName,address,state,city,zipCode,email,phon
             throw 'Contact Details Are Invalid';
         }
     }   
->>>>>>> UC2
 }
+
+//UC3 
+contactDetails('Abhishek', 'Sagar', 'Home', 'Uttar Pradesh', 'Mathura', "281001", 'Abhishek@gmail.com', "9876543210");
+console.log(addressBook);
