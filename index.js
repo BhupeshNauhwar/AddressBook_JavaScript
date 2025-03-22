@@ -1,58 +1,72 @@
-class Contact {
-    constructor(firstName, lastName, address, city, state, zip, phoneNumber, email) {
-        this.firstName = this.validateName(firstName, "First Name");
-        this.lastName = this.validateName(lastName, "Last Name");
-        this.address = this.validateMinLength(address, "Address", 4);
-        this.city = this.validateMinLength(city, "City", 4);
-        this.state = this.validateMinLength(state, "State", 4);
-        this.zip = this.validateZip(zip);
-        this.phoneNumber = this.validatePhone(phoneNumber);
-        this.email = this.validateEmail(email);
-    }
+// UC-1
+class Contact{
+    firstName;
+    lastName;
+    address;
+    state;
+    city;
+    zipCode;
+    email;
+    phoneNumber;
 
-    validateName(name, fieldName) {
-        const nameRegex = /^[A-Z][a-zA-Z]{2,}$/;
-        if (!nameRegex.test(name)) {
-            throw new Error(`${fieldName} must start with a capital letter and have at least 3 characters.`);
+   //created constructor
+    constructor(firstName,lastName,address,state,city,zipCode,email,phoneNumber){
+        this.firstName = firstName
+        this.lastName = lastName
+        this.address = address
+        this.state = state
+        this.city = city
+        this.zipCode = zipCode
+        this.email = email
+        this.phoneNumber = phoneNumber
+    }
+}
+
+//UC2
+var addressBook = new Array();
+
+function contactDetails(firstName,lastName,address,state,city,zipCode,email,phoneNumber){
+    
+    //checking duplicate
+    addressBook.filter(contact => contact.firstName == firstName)
+    .reduce(() => count++ , count = 0);
+    if(count > 0){
+        console.log("Contact With Name " + firstName + " Already Present")
+    }else{
+        const firstNamePattern = /^[A-Z][a-zA-Z]{3,}/;
+    let firstName_Check = firstNamePattern.test(firstName);
+
+    const lastNamePattern = /^[A-Z][a-zA-Z]{3,}/;
+    let lastName_Check = lastNamePattern.test(lastName);
+
+    const addressPattern = /^[A-Za-zA-Z0-9]{3,}/;
+    let address_Check = addressPattern.test(address);
+
+    const statePattern = /^[A-Za-zA-Z]{3,}/;
+    let state_Check = statePattern.test(state);
+
+    const cityPattern = /^[A-Za-zA-Z]{3,}/;
+    let city_Check = cityPattern.test(city);
+
+    const zipCodePattern = /^[0-9]{6}/;
+    let zipCode_Check = zipCodePattern.test(zipCode) ;
+
+    const emailPattern = /^[A-Za-z0-9]+(.[A-Za-z0-9]+)@[^\\W]+(.[^\\W]+)?(?=(.[^_\\W]{3,}$|.[a-zA-Z]{2}$)).$/;
+    let email_Check = emailPattern.test(email);
+
+    const phoneNumberPattern = /^[0-9]{10}/;
+    let phoneNumber_Check = phoneNumberPattern.test(phoneNumber);
+
+        if(firstName_Check == true && lastName_Check == true && address_Check == true && state_Check == true && city_Check == true
+                        && zipCode_Check == true && email_Check == true && phoneNumber_Check == true){
+           
+            let newContact = new Contact(firstName,lastName,address,state,city,zipCode,email,phoneNumber);
+            console.log("Contact Added Successfully");
+            
+            addressBook.push(newContact);
+
+        }else{
+            throw 'Contact Details Are Invalid';
         }
-        return name;
-    }
-
-    validateMinLength(value, fieldName, minLength) {
-        if (value.length < minLength) {
-            throw new Error(`${fieldName} must have at least ${minLength} characters.`);
-        }
-        return value;
-    }
-
-    validateZip(zip) {
-        const zipRegex = /^[1-9][0-9]{5}$/;
-        if (!zipRegex.test(zip)) {
-            throw new Error("Zip code must be a valid 6-digit number.");
-        }
-        return zip;
-    }
-
-    validatePhone(phoneNumber) {
-        const phoneRegex = /^[0-9]{10}$/;
-        if (!phoneRegex.test(phoneNumber)) {
-            throw new Error("Phone number must be a valid 10-digit number.");
-        }
-        return phoneNumber;
-    }
-
-    validateEmail(email) {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(email)) {
-            throw new Error("Invalid email format.");
-        }
-        return email;
-    }
-
-    display() {
-        console.log(`Name: ${this.firstName} ${this.lastName}`);
-        console.log(`Address: ${this.address}, ${this.city}, ${this.state} - ${this.zip}`);
-        console.log(`Phone: ${this.phoneNumber}`);
-        console.log(`Email: ${this.email}`);
-    }
+    }   
 }
