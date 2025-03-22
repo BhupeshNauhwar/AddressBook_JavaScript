@@ -137,3 +137,14 @@ function numberOfContacts(){
 }
 
 console.log("Total number of contacts inside address book is : "+numberOfContacts());
+
+// UC7
+
+//method for Duplicate Check Function
+function isDuplicate(firstName) {
+    // Filter matching names
+    let duplicates = addressBook.filter(contact => contact.firstName === firstName);
+    // Reduce to count duplicates
+    let duplicateCount = duplicates.reduce((count) => count + 1, 0);
+    return duplicateCount > 0;
+}
