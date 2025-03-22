@@ -72,5 +72,5 @@ function contactDetails(firstName,lastName,address,state,city,zipCode,email,phon
 }
 
 //UC3 
-contactDetails('Abhishek', 'Sagar', 'Home', 'Uttar Pradesh', 'Mathura', "281001", 'Abhishek@gmail.com', "9876543210");
+contactDetails('Bhupesh', 'Kumar', 'Home', 'Uttar Pradesh', 'Mathura', "281001", 'bhupesh@gmail.com', "9873432340");
 console.log(addressBook);
